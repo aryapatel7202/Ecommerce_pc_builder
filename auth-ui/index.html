@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script>
+  (function () {
+    try {
+      var token = localStorage.getItem('token');
+      var expiry = localStorage.getItem('token_expiry');
+      if (token && expiry && Date.now() < parseInt(expiry, 10)) {
+        // User already logged in → skip React auth page
+        window.location.replace('/new_home.html');
+      }
+    } catch (e) {
+      console.warn("Auth redirect check failed:", e);
+    }
+  })();
+</script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
